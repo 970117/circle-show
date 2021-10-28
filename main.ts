@@ -11,11 +11,37 @@ function 燈數 (num: number) {
     } else if (num >= 14 && num <= 16) {
         X = 0
         y = 17 - num
+        basic.pause(100)
     }
     led.plot(X, y)
 }
+input.onButtonPressed(Button.A, function () {
+    basic.clearScreen()
+    for (let index = 0; index < 17; index++) {
+        a += 1
+        燈數(a)
+        basic.pause(100)
+    }
+})
+input.onButtonPressed(Button.AB, function () {
+    basic.clearScreen()
+    for (let index = 0; index < 17; index++) {
+        a += 1
+        燈數(a - 1)
+        basic.pause(100)
+    }
+})
+input.onButtonPressed(Button.B, function () {
+    basic.clearScreen()
+    for (let index = 0; index < 17; index++) {
+        a += 1
+        燈數(18 - a)
+        basic.pause(100)
+    }
+})
 let y = 0
 let X = 0
+let a = 0
 basic.showLeds(`
     # . . . #
     . # . # .
@@ -44,34 +70,7 @@ basic.showLeds(`
     # . . . #
     # . . . #
     `)
-let a = 0
+a = 0
 basic.forever(function () {
 	
-})
-loops.everyInterval(100, function () {
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        . . . . .
-        `)
-    a += 1
-    燈數(a)
-    if (a >= 17) {
-        basic.showLeds(`
-            # . . . #
-            # . . . #
-            # # # # #
-            # . . . #
-            # . . . #
-            `)
-        basic.showLeds(`
-            # # # # #
-            . . # . .
-            . . # . .
-            . . # . .
-            # # # # #
-            `)
-    }
 })
